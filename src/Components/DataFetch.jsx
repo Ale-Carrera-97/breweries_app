@@ -11,8 +11,8 @@ function DataFetch(){
     const [breweries, setBreweries] = useState([]);
     // const [dictionaries, setDictionaries] = useState([]);
     const [pageNumbers, setPageNumbers] = useState(1);
-    const [picStates, setStates] = useState('');
-    const [picCities, setCities] = useState('')
+    const [picStates, setStates] = useState('Select');
+    const [picCities, setCities] = useState('Select')
 
 
     function handleStatesChange(event){
@@ -24,18 +24,8 @@ function DataFetch(){
         //function to handle change on Cities (DC, Orlando, PaloAlto, etc..) selection
         setCities(event.target.value);
     }
-   
-    // var dd = {};
-    // console.log(pageNumber)
 
     useEffect(() => {
-        // let formattedURL = baseURL.replace('{}', pageNumber);
-        // console.log(baseURL)
-        // const howManny = axios.get(dictURL)
-        
-        // .then(response => {setDictionaries(response.data); dd = response.data})
-        // console.log(dd)
-        // console.log(howManny)
         axios.get(`https://api.openbrewerydb.org/breweries?by_state=${picStates}&by_city=${picCities}&page=${pageNumbers}`)
             .then(response => {setBreweries(response.data);console.log(response.data)})
             // console.log(response.data)
@@ -48,9 +38,11 @@ function DataFetch(){
     return(
         <div className="container">
             <h3>Breweries near you.</h3>
+            <h2>Select a State first and then a City to see breweries near you</h2>
             <div>Select State
             <select id='picStates' value={picStates}  onChange={handleStatesChange}>
-
+                
+                <option value="selected" selected='selected'>Select a State</option>
                 <option value="Texas">Texas</option>
 
                 <option value="Florida">Florida</option>
@@ -61,6 +53,8 @@ function DataFetch(){
             </div>
             <div>Select City
             <select id='picCities' value={picCities}  onChange={handleCitiesChange}>
+                <option value="selected" selected='selected'>Select a City</option>
+                
                 {
                     picStates === 'Texas' &&(
                         <>
@@ -127,17 +121,3 @@ function DataFetch(){
     )
 }
 export default DataFetch;
-
-// import React, {useState, useEffect} from "react";
-// import axios from 'axios';
-
-// const baseURL= 'https://api.openbrewerydb.org/breweries?by_state=texas&by_city=dallas&page={}';
-
-// export const DataFetch = (pageNumber) =>{
-//     const [breweries, setBreweries] = useState([]);
-//     const getData = async () => {
-//         const response = await axios.get(baseURL.replace('{}', pageNumber))
-//         const data = await response.json();
-
-//     }
-// }
