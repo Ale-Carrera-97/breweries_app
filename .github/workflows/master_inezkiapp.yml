@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - inezkiapp
+name: Build and deploy Node.js app to Azure Web App - breweries
 
 on:
   push:
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'breweries'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_586EAC179E64470FA4193742AC03CFD8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
