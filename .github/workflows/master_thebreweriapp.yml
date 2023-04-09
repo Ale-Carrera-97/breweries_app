@@ -62,4 +62,4 @@ jobs:
           app-name: 'thebreweriapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_65E6241D15344013B81645233072058F }}
-          package: .
+          package: release.zip
